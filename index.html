@@ -1,12 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hello World</title>
+  <title>Container IP Address</title>
 </head>
 <body>
-    <h1>Hello, World!</h1>
-    <p>this server IP address is {{ .IP }}</p>
+  <h1>Your Container IP Address</h1>
+  <p>The IP address of your container is <span id="ip"></span>.</p>
+  <script>
+    // Get the IP address of the container.
+    const ip = document.querySelector('#ip');
+    ip.innerHTML = window.location.hostname;
+  </script>
 </body>
 </html>
