@@ -6,10 +6,38 @@
 <body>
   <h1>IP Address</h1>
   <p>IP address ALB es <span id="ip"></span>.</p>
+  
+  <h1>MySQL Aurora Connection</h1>
+  <p id="connection-status"></p>
+
   <script>
-    // Get the IP address of the container.
     const ip = document.querySelector('#ip');
     ip.innerHTML = window.location.hostname;
+
+    // Realizar la conexión a MySQL Aurora
+    const connectionStatus = document.querySelector('#connection-status');
+    
+    // Cambia los valores de host, usuario, contraseña y base de datos según tu configuración
+    const mysqlHost = 'databasewordpress-instance-1.cdufmw0hwyde.us-east-1.rds.amazonaws.com:3306';
+    const mysqlUser = 'admin';
+    const mysqlPassword = 'Duoc.2022';
+    const mysqlDatabase = 'nginx';
+
+    const mysql = require('mysql');
+    const connection = mysql.createConnection({
+      host: mysqlHost,
+      user: mysqlUser,
+      password: mysqlPassword,
+      database: mysqlDatabase
+    });
+
+    connection.connect(function(err) {
+      if (err) {
+        connectionStatus.innerHTML = 'Error de conexión a MySQL: ' + err.message;
+      } else {
+        connectionStatus.innerHTML = 'Conexión a MySQL exitosa';
+      }
+    });
   </script>
 </body>
 </html>
